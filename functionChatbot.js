@@ -1,6 +1,6 @@
 (function () {
   const CONFIG = {
-    webhookUrl: "https://n8n.srv1072276.hstgr.cloud/webhook/170b2295-996c-486e-a949-098ecf8b88c8/chat",
+    webhookUrl: "https://n8n.srv1072276.hstgr.cloud/webhook-test/f4080048-c127-4176-8c32-eb20d929eb55",
     themeColor: "#0066FF",
     logoUrl: "https://www.redditstatic.com/shreddit/assets/snoo_wave.png",
     title: "Travel Assistant",
@@ -132,3 +132,4 @@
   closeBtn.onclick = closeChat;
 
 })();
+
