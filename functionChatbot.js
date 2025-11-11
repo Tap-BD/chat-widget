@@ -1,6 +1,6 @@
 (function () {
   const CONFIG = {
-    webhookUrl: "https://n8n.srv1072276.hstgr.cloud/webhook-test/f4080048-c127-4176-8c32-eb20d929eb55",
+    webhookUrl: "https://n8n.srv1072276.hstgr.cloud/webhook/f4080048-c127-4176-8c32-eb20d929eb55",
     themeColor: "#0066FF",
     logoUrl: "https://www.redditstatic.com/shreddit/assets/snoo_wave.png",
     title: "Travel Assistant",
@@ -97,9 +97,7 @@
     const nameVal = document.getElementById("name").value.trim();
     const emailVal = document.getElementById("email").value.trim();
     const phoneVal = document.getElementById("phone").value.trim();
-    if ((CONFIG.requiredFields.name && !nameVal) || (CONFIG.requiredFields.email && !emailVal)) {
-      return alert("Please fill required fields");
-    }
+    if ((CONFIG.requiredFields.name && !nameVal) || (CONFIG.requiredFields.email && !emailVal)) return alert("Please fill required fields");
     state.user = { name: nameVal, email: emailVal, phone: phoneVal };
     welcome.style.display = "none"; chat.style.display = "flex";
     state.botQueue.push(CONFIG.welcomeMsg);
@@ -117,7 +115,8 @@
     })
       .then(res => res.json())
       .then(data => {
-        state.botQueue.push(data.reply || "🤖 No response");
+        if (data.reply) state.botQueue.push(data.reply);
+        else state.botQueue.push("🤖 No response");
         processQueue();
       })
       .catch(() => {
@@ -132,4 +131,3 @@
   closeBtn.onclick = closeChat;
 
 })();
-
